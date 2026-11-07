@@ -1,4 +1,4 @@
-const VERSION='economist-gate-v141-1',PUBLIC=['./','index.html','gate-entry.js','gate-entry.js?v=1.4.1','manifest.webmanifest','apple-touch-icon.png','icon-192.png','icon-512.png','vault-index.json'];
+const VERSION='economist-gate-v141-2',PUBLIC=['./','index.html','gate-entry.js','gate-entry.js?v=1.4.1-r2','manifest.webmanifest','apple-touch-icon.png','icon-192.png','icon-512.png','vault-index.json'];
 const base=self.registration.scope;let metaPromise,keyPromise;
 const meta=()=>metaPromise||=(async()=>{const cache=await caches.open(VERSION);let r=await cache.match(new URL('vault-index.json',base));if(!r){r=await fetch(new URL('vault-index.json',base));if(!r.ok)throw Error('无法加载题库目录');await cache.put(new URL('vault-index.json',base),r.clone());}return r.json()})();
 function database(){return new Promise((resolve,reject)=>{const r=indexedDB.open('economist-gate-'+new URL(base).pathname,1);r.onupgradeneeded=()=>r.result.createObjectStore('keys');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
